@@ -1,0 +1,28 @@
+template(name="form_submitapp") 
+    section.card-details.js-card-details.js-perfect-scrollbar
+        +basicFormBlock(schema=schema action=action)
+            +basicInput2(field="testField" label="用户名")
+            +basicInput2(field="testField" label="类别")
+        .actioncolumns
+            .ac
+                .actionitem 交表
+                .actionitem 初审中
+                .actionitem 已初审    
+                .actionitem 补充资料
+                .actionitem 审核中
+                .actionitem 书面通过
+            .ac
+                .actionitem 已出合同发票
+                .actionitem 待付款
+                .actionitem 已付款
+                .actionitem 准备验厂
+            .ac
+                .actionitem 已安排验厂
+                .actionitem 已出行程
+                .actionitem 已验厂
+                .actionitem 验厂补充
+            .ac
+                .actionitem 待出证
+                .actionitem 已出证
+                .actionitem 待邮寄
+                .actionitem 已邮寄    

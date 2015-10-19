@@ -1,0 +1,5 @@
+template(name="client")
+  section.card-details.js-card-details.js-perfect-scrollbar: .card-details-canvas
+    .title= card.title
+    .created {{ moment card.createdAt }}
+  +form_submitapp

@@ -1,0 +1,6 @@
+template(name="basicInput2")
+	strong= label
+	input(placeholder=instructions class="reactive-element" value=value)
+	if submitted
+		if errorMessage
+			p.error-message= errorMessage
