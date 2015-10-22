@@ -13,19 +13,19 @@ BlazeComponent.extendComponent({
   },
 
   reachNextPeak() {
-    const activitiesComponent = this.componentChildren('activities')[0];
+    const activitiesComponent = this.childrenComponents('activities')[0];
     activitiesComponent.loadNextPage();
   },
 
   onCreated() {
     this.isLoaded = new ReactiveVar(false);
-    this.componentParent().showOverlay.set(true);
-    this.componentParent().mouseHasEnterCardDetails = false;
+    this.parentComponent().showOverlay.set(true);
+    this.parentComponent().mouseHasEnterCardDetails = false;
   },
 
   scrollParentContainer() {
     const cardPanelWidth = 510;
-    const bodyBoardComponent = this.componentParent();
+    const bodyBoardComponent = this.parentComponent();
 
     const $cardContainer = bodyBoardComponent.$('.js-lists');
     const $cardView = this.$(this.firstNode());
@@ -52,7 +52,7 @@ BlazeComponent.extendComponent({
   },
 
   onDestroyed() {
-    this.componentParent().showOverlay.set(false);
+    this.parentComponent().showOverlay.set(false);
   },
 
   events() {
@@ -62,7 +62,8 @@ BlazeComponent.extendComponent({
       },
     };
 
-    return [_.extend(events, {
+    return [{
+      ...events,
       'click .js-close-card-details'() {
         Utils.goBoardId(this.data().boardId);
       },
@@ -83,10 +84,10 @@ BlazeComponent.extendComponent({
       'click .js-add-members': Popup.open('cardMembers'),
       'click .js-add-labels': Popup.open('cardLabels'),
       'mouseenter .js-card-details'() {
-        this.componentParent().showOverlay.set(true);
-        this.componentParent().mouseHasEnterCardDetails = true;
+        this.parentComponent().showOverlay.set(true);
+        this.parentComponent().mouseHasEnterCardDetails = true;
       },
-    })];
+    }];
   },
 }).register('cardDetails');
 
