@@ -10,7 +10,9 @@ Meteor.publish('boards', function() {
 
   // Defensive programming to verify that starredBoards has the expected
   // format -- since the field is in the `profile` a user can modify it.
-  const {starredBoards = []} = Users.findOne(this.userId).profile;
+  var user = Users.findOne(this.userId);
+  if (!user.profile) user.profile = { starredBoards: []};
+  const {starredBoards = []} = user.profile;
   check(starredBoards, [String]);
 
   return Boards.find({
